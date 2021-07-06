@@ -26,7 +26,7 @@ jobs:
       - name: Create Release
         uses: softprops/action-gh-release@v1
         with:
-          files: build/libs/InventorySorter*-all.jar
+          files: build/libs/*-all.jar
           body: ${{ steps.changelogs.outputs.changelogs }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
