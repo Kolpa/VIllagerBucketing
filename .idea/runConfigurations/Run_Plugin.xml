@@ -1,0 +1,11 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="Run Plugin" type="JarApplication">
+    <option name="JAR_PATH" value="$USER_HOME$/Desktop/test/paper-1.17-65.jar" />
+    <option name="PROGRAM_PARAMETERS" value="-nogui" />
+    <option name="WORKING_DIRECTORY" value="C:\Users\kolya\Desktop\test" />
+    <option name="ALTERNATIVE_JRE_PATH" />
+    <method v="2">
+      <option name="Gradle.BeforeRunTask" enabled="true" tasks="copyLibToPlugins" externalProjectPath="$PROJECT_DIR$" vmOptions="" scriptParameters="" />
+    </method>
+  </configuration>
+</component>
