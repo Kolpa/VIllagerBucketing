@@ -1,0 +1,32 @@
+name: Release Build
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+      - name: Setup Java JDK
+        uses: actions/setup-java@v2.1.0
+        with:
+          distribution: adopt
+          java-version: 16
+      - name: Build With Gradle
+        uses: burrunan/gradle-cache-action@v1
+        with:
+          arguments: shadowJar
+      - name: Create Changelog
+        id: changelog
+        uses: heineiuo/create-changelogs@master
+      - name: Create Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: build/libs/InventorySorter*-all.jar
+          body: ${{ steps.changelogs.outputs.changelogs }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

@@ -1,0 +1,8 @@
+name: VillagerBucketing
+version: ${version}
+main: de.kolpa.mc.villagerbucketing.VillagerBucketing
+api-version: 1.17
+prefix: VillagerBucketing
+authors: [Kolpa]
+description: Put villagers in buckets for safekeeping
+website: kolpa.de
