@@ -1,9 +1,7 @@
 package de.kolpa.mc.villagerbucketing.handlers
 
-import de.kolpa.mc.villagerbucketing.storage.villager.SerializedVillager.Companion.serialize
 import de.kolpa.mc.villagerbucketing.storage.villager.SerializedVillager.Companion.spawn
 import de.kolpa.mc.villagerbucketing.storage.villager.VillagerBucketRepository
-import de.kolpa.mc.villagerbucketing.storage.villager.VillagerStorage
 import de.kolpa.mc.villagerbucketing.util.PlayerInventoryUtils
 import org.bukkit.Material
 import org.bukkit.entity.Villager
@@ -14,7 +12,6 @@ import org.bukkit.event.player.PlayerInteractEvent
 import org.bukkit.inventory.ItemStack
 
 class PlayerInteractEntityEventListener(
-    private val storage: VillagerStorage,
     private val villagerBucketRepository: VillagerBucketRepository,
     private val playerInventoryUtils: PlayerInventoryUtils,
 ) : Listener {
@@ -27,17 +24,13 @@ class PlayerInteractEntityEventListener(
             return
         }
 
-        val serialized = villager.serialize()
-
         val villagerBucket = villagerBucketRepository.createBucketForVillager(villager)
-
-        storage.storeVillager(villagerBucket.uuid, serialized)
 
         villager.remove()
 
         currentItem.subtract()
 
-        event.player.inventory.addItem(villagerBucket.itemStack)
+        event.player.inventory.addItem(villagerBucket)
     }
 
     @EventHandler
